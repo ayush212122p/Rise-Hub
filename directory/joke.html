@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+.title{
+    font-family: 'Lora', serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #0e0d0d;
+    margin: 25px 10px;
+    position: relative;
+   bottom: 25px;
+}
+.container{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   background-color:#e0e0e0;
+}
+.quotes{
+    align-content: center;
+    text-align: center;
+     min-height: 80px;
+    max-width:350px;
+    border: 2px solid black;
+    font-family:"kalam";
+    font-weight:900;
+    font-style: normal;;
+    background-color: rgb(35, 199, 183);
+    font-size: 28px;
+    padding: 15px;
+    line-height: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+    
+}
+.btn{
+    position: relative;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #11988b;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+        border-radius: 50px;
+        &:hover{
+            background-color: #0e0d0d;
+            color: #11988b;
+     }
+
+}
+.type{
+    color: #0e0d0d;
+    margin-bottom: 10px;
+}
+  p{
+    display: inline;
+        color: rgb(255, 0, 140);
+        font-size: larger;
+    }
+    footer{
+        margin-top: 5px;
+        color: rgb(83, 42, 53);
+        font-size: larger;
+        position: absolute;
+        bottom: 5px;
+     
+    }
+a{
+    text-decoration: none;
+    color: rgb(83, 42, 53);
+    font-weight:bolder;
+}
+.overlay{
+    display: inline;
+    position: absolute;
+    left: 1px;
+    display: none;
+}
+.hidden{
+    display: none;
+}
+.show{
+    display: block;
+}
+@media screen and (max-width: 500px){
+   .title{
+    bottom: 97px;
+   }
+    }
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<body>
+         <div class="container">
+            <h2 class="title">The Laugh Track</h1>
+        <h1 class="type"></h1>
+        <div class="quotes"></div>
+        <br>
+        <button class="btn">
+       <div class="overlay"><i class="fa-solid fa-arrows-rotate fa-spin"></i></div>Click me!</button>
+        <footer class="footer">Made By <p>&hearts;</p> <a href="https://www.instagram.com/ayush_srivastava_108?igsh=MWxnODV0a25lOHgwbA==">@ayush</a></footer>
+        <br><br><br><br>
+    </div>
+   
+</body>
+<script>
+    let type=document.querySelector(".type");
+let quote=document.querySelector(".quotes");
+let btn=document.querySelector(".btn");
+let icon=document.querySelector(".overlay");
+let url="https://hindi-jokes-api.onrender.com/jokes?api_key=43ff1148693f5b8801af797c7d8a";
+let getfacts= async () => {
+    let response=await fetch(url);
+    let data=await response.json();
+    console.log(data);
+    
+    //     type.innerHTML=data.type.toUpperCase(); 
+       quote.innerHTML=data.jokeContent;
+    }
+    
+btn.addEventListener("click",()=>{
+icon.classList.add("show");
+getfacts();
+setInterval(() => {
+    icon.classList.remove("show");
+    icon.classList.add("hidden");
+},800);
+})
+
+window.addEventListener("DOMContentLoaded",getfacts);
+</script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rise Hub</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<body>
+    <div class="container">
+        <div class="img"><img src="rise-hub-high-resolution-logo.png" alt=""></div>
+        <div class="home">
+        <h1>Choose Catagory</h1>
+            <br>
+             <button class="sad" onclick="delayedNavigation('/directory/sad.html')">Sad</button>
+             <button class="attitude" onclick="delayedNavigation('/directory/attitude.html')">Attitude</button>
+             <button class=" love" onclick="delayedNavigation('/directory/love.html')">Love</button>
+             <button class=" motiv" onclick="delayedNavigation('/directory/motivational.html')">Motivational</button>
+             <button class=" success" onclick="delayedNavigation('/directory/success.html')">Success</button>
+             <button class=" thoughts" onclick="delayedNavigation('/directory/thought.html')">Thoughts</button>
+             <a href="website-under-construction-page-web-260nw-2014660484.webp" class="story"><button>Story</button></a>
+          <a href="website-under-construction-page-web-260nw-2014660484.webp" class="jokes"><button>Jokes</button></a>
+             <div class="overlay"> <i class="fa-solid fa-cog fa-spin"></i></div>
+    </div>
+    </div>
+    <script>
+        const icon=document.querySelector(".overlay");
+        let btn=document.querySelectorAll("button");
+btn.forEach((btn)=>{
+    btn.addEventListener("click",()=>{
+            icon.classList.add("show");
+            setTimeout(()=>{
+                icon.classList.remove("show");
+            },1000)
+        });
+});
+
+      
+   
+        function delayedNavigation(url) {
+    setTimeout(function() {
+        window.location.href = url;
+    }, 250);
+}
+
+
+    </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+.title{
+    font-family: 'Lora', serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #0e0d0d;
+    margin: 25px 10px;
+    position: relative;
+   bottom: 25px;
+}
+.container{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   background-color:#e0e0e0;
+}
+.quotes{
+    align-content: center;
+    text-align: center;
+     min-height: 80px;
+    max-width:350px;
+    border: 2px solid black;
+    font-family:"kalam";
+    font-weight:900;
+    font-style: normal;;
+    background-color: rgb(183, 140, 175);
+    font-size: 28px;
+    padding: 15px;
+    line-height: 40px;
+}
+.btn{
+    position: relative;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #11988b;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+        border-radius: 50px;
+        &:hover{
+            background-color: #0e0d0d;
+            color: #11988b;
+     }
+
+}
+.type{
+    color: #0e0d0d;
+    margin-bottom: 10px;
+}
+  p{
+    display: inline;
+        color: rgb(255, 0, 140);
+        font-size: larger;
+    }
+    footer{
+        margin-top: 5px;
+        color: rgb(83, 42, 53);
+        font-size: larger;
+        position: absolute;
+        bottom: 5px;
+     
+    }
+a{
+    text-decoration: none;
+    color: rgb(83, 42, 53);
+    font-weight:bolder;
+}
+.overlay{
+    display: inline;
+    position: absolute;
+    left: 1px;
+    display: none;
+}
+.hidden{
+    display: none;
+}
+.show{
+    display: block;
+}
+.refresh{
+    position: absolute;
+    margin-top: 400px;
+    padding-top: 70px;
+    color: #0e0d0d;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    animation: fadeInOut 4s infinite;
+}
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+@media screen and (max-width: 500px){
+   .title{
+    bottom: 97px;
+   }
+    .refresh{
+        position: absolute;
+    margin-top: 400px;
+    padding-top: 90px;
+    color: #0e0d0d;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    animation: fadeInOut 4s infinite;
+}
+    }
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<body>
+         <div class="container">
+            <h2 class="title">जज़्बा-ए -ज़िन्दगी</h1>
+        <h1 class="type"></h1>
+        <div class="quotes"></div>
+        <br>
+        <button class="btn">
+       <div class="overlay"><i class="fa-solid fa-arrows-rotate fa-spin"></i></div>Click me!</button>
+        <footer class="footer">Made By <p>&hearts;</p> <a href="https://www.instagram.com/ayush_srivastava_108?igsh=MWxnODV0a25lOHgwbA==">@ayush</a></footer>
+        <br><br><br><br>
+        <div class="refresh"></div>
+    </div>
+   
+</body>
+<script>
+    let type=document.querySelector(".type");
+let quote=document.querySelector(".quotes");
+let btn=document.querySelector(".btn");
+let icon=document.querySelector(".overlay");
+let refresh=document.querySelector(".refresh");
+let url="https://hindi-quotes.vercel.app/random/success";
+let getfacts= async () => {
+    let response=await fetch(url);
+    let data=await response.json();
+        type.innerHTML=data.type.toUpperCase(); 
+       quote.innerHTML=data.quote;
+    }
+    
+btn.addEventListener("click",()=>{
+icon.classList.add("show");
+getfacts();
+setInterval(() => {
+    icon.classList.remove("show");
+    icon.classList.add("hidden");
+},800);
+})
+
+let toggleRefreshText = () => {
+    refresh.innerText = "Click to more Quotes";
+    setTimeout(() => {
+        refresh.innerText = "";
+    }, 2000);
+};
+
+setInterval(toggleRefreshText, 4000);
+
+window.addEventListener("DOMContentLoaded",getfacts);
+</script>
+</html>
